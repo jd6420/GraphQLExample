@@ -1,6 +1,10 @@
 using CoffeeShop.Data;
 using CoffeeShop.Interfaces;
+using CoffeeShop.Mutation;
+using CoffeeShop.Query;
+using CoffeeShop.Schema;
 using CoffeeShop.Services;
+using CoffeeShop.Type;
 using GraphiQl;
 using GraphQL;
 using GraphQL.Server;
@@ -36,6 +40,19 @@ namespace CoffeeShop
             services.AddTransient<IMenu, MenuService>();
             services.AddTransient<ISubmenu, SubmenuService>();
             services.AddTransient<IReservation, ReservationService>();
+            //services.AddTransient<MenuType>();
+            //services.AddTransient<SubmenuType>();
+            //services.AddTransient<ReservationType>();
+            services.AddTransient<MenuQuery>();
+            services.AddTransient<SubmenuQuery>();
+            services.AddTransient<ReservationQuery>();
+            services.AddTransient<MenuMutation>();
+            services.AddTransient<SubmenuMutation>();
+            services.AddTransient<ReservationMutation>();
+            services.AddTransient<RootQuery>();
+            services.AddTransient<RootMutation>();
+
+            services.AddTransient<ISchema, RootSchema>();
 
             GraphQL.MicrosoftDI.GraphQLBuilderExtensions
                 .AddGraphQL(services)
